@@ -1,0 +1,535 @@
+import 'package:chat_demo/modules/view_image/view_image_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+//Color components
+Color kMainColor() => Color(0xff3B7744);
+Color kGreenColor() => Color(0xff00ff00);
+Color kWhiteColor() => Color(0xffffffff);
+Color kBlackColor() => Color(0xff000000);
+Color kBlueColor() => Color(0xff2C6BEE);
+Color kGreyColor() => Color(0xffE9E9E9);
+Color kGreyColor500() => Color(0xff8b8b8b);
+//TextStyle component
+
+TextStyle textBlack12() => TextStyle(
+      fontSize: 12.0,
+      color: kBlackColor(),
+    );
+TextStyle textBlack14() => TextStyle(
+      fontSize: 14.0,
+      color: kBlackColor(),
+    );
+TextStyle textBlack16() => TextStyle(
+      fontSize: 16.0,
+      color: kBlackColor(),
+    );
+TextStyle textBlack18() => TextStyle(
+      fontSize: 18.0,
+      color: kBlackColor(),
+    );
+TextStyle textBlack20() => TextStyle(
+      fontSize: 20.0,
+      color: kBlackColor(),
+    );
+TextStyle textBlackBold12() => TextStyle(
+      fontSize: 12.0,
+      color: kBlackColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textBlackBold14() => TextStyle(
+      fontSize: 14.0,
+      color: kBlackColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textBlackBold16() => TextStyle(
+      fontSize: 16.0,
+      color: kBlackColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textBlackBold18() => TextStyle(
+      fontSize: 18.0,
+      color: kBlackColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textBlackBold20() => TextStyle(
+      fontSize: 20.0,
+      color: kBlackColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textGrey12() => TextStyle(
+      fontSize: 12.0,
+      color: kGreyColor500(),
+    );
+TextStyle textGrey14() => TextStyle(
+      fontSize: 14.0,
+      color: kGreyColor500(),
+    );
+TextStyle textGrey16() => TextStyle(
+      fontSize: 16.0,
+      color: kGreyColor500(),
+    );
+TextStyle textGrey18() => TextStyle(
+      fontSize: 18.0,
+      color: kGreyColor500(),
+    );
+TextStyle textGrey20() => TextStyle(
+      fontSize: 20.0,
+      color: kGreyColor500(),
+    );
+TextStyle textGreyBold12() => TextStyle(
+      fontSize: 12.0,
+      color: kGreyColor500(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textGreyBold14() => TextStyle(
+      fontSize: 14.0,
+      color: kGreyColor500(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textGreyBold16() => TextStyle(
+      fontSize: 16.0,
+      color: kGreyColor500(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textGreyBold18() => TextStyle(
+      fontSize: 18.0,
+      color: kGreyColor500(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textGreyBold20() => TextStyle(
+      fontSize: 20.0,
+      color: kGreyColor500(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textWhite12() => TextStyle(
+      fontSize: 12.0,
+      color: kWhiteColor(),
+    );
+TextStyle textWhite14() => TextStyle(
+      fontSize: 14.0,
+      color: kWhiteColor(),
+    );
+TextStyle textWhite16() => TextStyle(
+      fontSize: 16.0,
+      color: kWhiteColor(),
+    );
+TextStyle textWhite18() => TextStyle(
+      fontSize: 18.0,
+      color: kWhiteColor(),
+    );
+TextStyle textWhite20() => TextStyle(
+      fontSize: 20.0,
+      color: kWhiteColor(),
+    );
+TextStyle textWhiteBold12() => TextStyle(
+      fontSize: 12.0,
+      color: kWhiteColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textWhiteBold14() => TextStyle(
+      fontSize: 14.0,
+      color: kWhiteColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textWhiteBold16() => TextStyle(
+      fontSize: 16.0,
+      color: kWhiteColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textWhiteBold18() => TextStyle(
+      fontSize: 18.0,
+      color: kWhiteColor(),
+      fontWeight: FontWeight.bold,
+    );
+TextStyle textWhiteBold20() => TextStyle(
+      fontSize: 20.0,
+      color: kWhiteColor(),
+      fontWeight: FontWeight.bold,
+    );
+
+//Navigate Method
+
+void navigateTo(
+        {@required context, @required Widget widget, Function setState}) =>
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+    );
+
+void navigateAndFinish({
+  @required context,
+  @required Widget widget,
+}) {
+  Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+      (Route<dynamic> route) => false);
+}
+
+//Widget Component
+MaterialButton buildMainButton({
+  @required Function onPressed,
+  @required String text,
+}) {
+  return MaterialButton(
+    color: kBlueColor(),
+    height: 40.0,
+    minWidth: double.infinity,
+    onPressed: onPressed,
+    child: Text(
+      text.toUpperCase(),
+      style: textWhite16(),
+      textAlign: TextAlign.center,
+    ),
+  );
+}
+
+//Build user Item
+
+Widget buildItem({@required Function onTap, item}) {
+  return InkWell(
+    onTap: onTap,
+    child: Padding(
+      padding: EdgeInsets.only(
+        top: 20.0,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          buildProfileAvatar(profileData: item, radius: 22.0),
+          SizedBox(
+            width: 15.0,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                '${item['firstName'] + ' ' + item['lastName']}',
+                style: textBlackBold14(),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Text(
+                'This is the instruction manual.',
+                style: textGrey14(),
+              ),
+            ],
+          ),
+          Spacer(),
+          Column(
+            children: [
+              Text(
+                'Now',
+                style: textBlackBold14(),
+              ),
+              Container(
+                width: 30.0,
+                child: Stack(
+                  children: [
+                    Align(
+                      child: CircleAvatar(
+                        radius: 8.0,
+                        backgroundColor: kGreyColor500(),
+                        child: Icon(
+                          Icons.check,
+                          size: 10.0,
+                          color: kWhiteColor(),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      child: CircleAvatar(
+                        radius: 8.0,
+                        backgroundColor: kGreyColor500(),
+                        child: Icon(
+                          Icons.check,
+                          size: 10.0,
+                          color: kWhiteColor(),
+                        ),
+                      ),
+                      alignment: Alignment.centerRight,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+//Message Item
+Widget myItemMessage({@required message, @required messageDate, context}) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(60.0, 5.0, 15.0, 5.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        if (message['message'] != null)
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  child: Text(
+                    message['message'],
+                    style: textBlack14(),
+                  ),
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    color: kGreyColor(),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15.0),
+                      bottomRight: Radius.circular(15.0),
+                      topRight: Radius.circular(0.0),
+                      topLeft: Radius.circular(15.0),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                    right: 5.0,
+                  ),
+                  child: Text(
+                    messageDate,
+                    style: textBlackBold12().copyWith(
+                      fontSize: 10.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        if (message['imageName'] != null)
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {
+                    navigateTo(
+                      context: context,
+                      widget: ViewImageScreen(
+                        image: message['imageName'],
+                      ),
+                    );
+                  },
+                  child: Container(
+                    child: Image(
+                      image: NetworkImage(message['imageName']),
+                      fit: BoxFit.contain,
+                      height: 300.0,
+                    ),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      color: kGreyColor(),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
+                        topRight: Radius.circular(15.0),
+                        topLeft: Radius.circular(15.0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                    right: 5.0,
+                  ),
+                  child: Text(
+                    messageDate,
+                    style: textBlackBold12().copyWith(
+                      fontSize: 10.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
+    ),
+  );
+}
+
+Widget userItemMessage(
+    {@required message,
+    @required messageDate,
+    @required profileData,
+    context}) {
+  return Padding(
+    padding: EdgeInsets.symmetric(
+      horizontal: 15.0,
+      vertical: 5.0,
+    ),
+    child: Row(
+      children: [
+        buildProfileAvatar(profileData: profileData),
+        SizedBox(
+          width: 10.0,
+        ),
+        if (message['message'] != null)
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: Text(
+                    message['message'],
+                    style: textWhite14(),
+                  ),
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    color: kMainColor(),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15.0),
+                      bottomRight: Radius.circular(15.0),
+                      topRight: Radius.circular(15.0),
+                      topLeft: Radius.circular(0.0),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                    left: 5.0,
+                  ),
+                  child: Text(
+                    messageDate,
+                    style: textBlackBold12().copyWith(
+                      fontSize: 10.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        if (message['imageName'] != null)
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: () {
+                    navigateTo(
+                      context: context,
+                      widget: ViewImageScreen(
+                        image: message['imageName'],
+                      ),
+                    );
+                  },
+                  child: Container(
+                    child: Image(
+                      image: NetworkImage(message['imageName']),
+                      fit: BoxFit.contain,
+                      height: 300.0,
+                    ),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      color: kGreyColor(),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
+                        topRight: Radius.circular(15.0),
+                        topLeft: Radius.circular(15.0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                    right: 5.0,
+                  ),
+                  child: Text(
+                    messageDate,
+                    style: textBlackBold12().copyWith(
+                      fontSize: 10.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
+    ),
+  );
+}
+
+//End of Item
+
+//Profile Avatar
+Stack buildProfileAvatar({@required profileData, double radius = 18.0}) {
+  return Stack(
+    alignment: Alignment.bottomRight,
+    children: [
+      CircleAvatar(
+        radius: radius,
+        backgroundImage: profileData['imagePath'] == null
+            ? AssetImage('assets/images/default.jpg')
+            : NetworkImage(
+                profileData['imagePath'],
+              ),
+      ),
+      if (profileData['status'] == 'online' ||
+          profileData['status'] == 'Typing')
+        CircleAvatar(
+          backgroundColor: kWhiteColor(),
+          radius: 7.0,
+          child: CircleAvatar(
+            radius: 5.0,
+            backgroundColor: kGreenColor(),
+          ),
+        ),
+    ],
+  );
+}
+//End Profile Avatar
+
+// End Of Widgets
+
+//SharedPreferences
+
+SharedPreferences preferences;
+
+Future<void> initPref() async => await SharedPreferences.getInstance().then(
+      (value) {
+        preferences = value;
+      },
+    );
+
+Future<bool> saveFirstName({@required String firstName}) =>
+    preferences.setString('firstName', firstName);
+Future<bool> saveLastName({@required String lastName}) =>
+    preferences.setString('LastName', lastName);
+
+Future<bool> saveUserId({@required String userId}) =>
+    preferences.setString('userId', userId);
+
+Future<bool> saveUserImage({@required String imagePath}) =>
+    preferences.setString('imagePath', imagePath);
+
+Future<bool> saveUserPhone({@required String phone}) =>
+    preferences.setString('phone', phone);
+
+String getFirstName() => preferences.get('firstName');
+String getLastName() => preferences.get('LastName');
+String getUserId() => preferences.get('userId');
+String getUserImage() => preferences.get('imagePath');
+String getUserPhone() => preferences.get('phone');
+
+// End of SharedPreferences
