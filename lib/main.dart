@@ -1,4 +1,3 @@
-import 'package:chat_demo/modules/profile_info/profile_info.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,16 +23,18 @@ void main() async {
     myWidget = WelcomeScreen();
   }
 
-  runApp(MyApp(
-      // myWidget: myWidget,
-      ));
+  runApp(
+    MyApp(
+      myWidget: myWidget,
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
-  // final Widget myWidget;
-  // {@required this.myWidget}
-  const MyApp();
+  final Widget myWidget;
+
+  const MyApp({@required this.myWidget});
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -104,7 +105,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             backgroundColor: kBlueColor(),
           ),
         ),
-        home: ProfileInfoScreen(),
+        home: widget.myWidget,
       ),
     );
   }
