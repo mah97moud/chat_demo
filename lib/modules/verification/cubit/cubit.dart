@@ -1,4 +1,4 @@
-import 'package:chat_demo/modules/home/home_screen.dart';
+import 'package:chat_demo/modules/profile_info/profile_info.dart';
 import 'package:chat_demo/modules/verification/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,7 +43,7 @@ class VerificationCubit extends Cubit<VerificationStates> {
             emit(VerificationSuccessStates());
             navigateAndFinish(
               context: context,
-              widget: HomeScreen(),
+              widget: ProfileInfoScreen(),
             );
           },
         ).catchError(
