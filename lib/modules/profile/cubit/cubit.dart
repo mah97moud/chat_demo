@@ -73,16 +73,15 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future<void> updateUser({String firstName, String lastName}) async {
     emit(ProfileSendState());
     //TODO : make firstName and lastName != null
-    return users.doc(getUserId())
-      ..update({
-        'firstName': firstName,
-        'lastName': lastName,
-      }).then((value) {
-        emit(ProfileSendSuccessState());
-        getRealTimeData();
-        print(getFirstName());
-        print(getLastName());
-      }).catchError((error) => print("Failed to update user: $error"));
+    return users.doc(getUserId()).update({
+      'firstName': firstName,
+      'lastName': lastName,
+    }).then((value) {
+      emit(ProfileSendSuccessState());
+      getRealTimeData();
+      print(getFirstName());
+      print(getLastName());
+    }).catchError((error) => print("Failed to update user: $error"));
   }
 
   Future<void> updateUserImage() {
