@@ -59,6 +59,8 @@ class LoginScreen extends StatelessWidget {
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                   labelText: 'code',
+                                  hintText: '+',
+                                  hintStyle: textBlackBold20(),
                                   labelStyle: textBlackBold14().copyWith(
                                     color: kBlueColor(),
                                   ),

@@ -17,7 +17,7 @@ class LoginCubit extends Cubit<LoginStates> {
   }) async {
     emit(LoginLoadingState());
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '$code$phone',
+      phoneNumber: '+$code$phone',
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {},
       codeSent: (String verificationId, int resendToken) {
