@@ -40,9 +40,6 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 15.0,
-                      ),
                       CircleAvatar(
                         radius: 20.0,
                         backgroundImage: getUserImage() != null
