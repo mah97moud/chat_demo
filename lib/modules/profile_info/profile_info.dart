@@ -88,7 +88,7 @@ class ProfileInfoScreen extends StatelessWidget {
                           showCursor: false,
                           controller: firstNameController,
                           decoration: InputDecoration(
-                            hintText: 'first name',
+                            hintText: getLanguage(context).firstName,
                             hintStyle: textGrey16(),
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
@@ -113,7 +113,7 @@ class ProfileInfoScreen extends StatelessWidget {
                           showCursor: false,
                           controller: lastNameController,
                           decoration: InputDecoration(
-                            hintText: 'last name',
+                            hintText: getLanguage(context).lastName,
                             hintStyle: textGrey16(),
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
@@ -155,7 +155,7 @@ class ProfileInfoScreen extends StatelessWidget {
                             firstNameController: firstNameController,
                             lastNameController: lastNameController);
                       },
-                      text: 'continue',
+                      text: getLanguage(context).continu,
                     ),
                   ),
                 ],

@@ -22,28 +22,28 @@ class WelcomeScreen extends StatelessWidget {
               height: 20.0,
             ),
             Text(
-              'Take Privacy with you.',
+              getLanguage(context).takePrivacy,
               style: textBlackBold20(),
             ),
             SizedBox(
               height: 5.0,
             ),
             Text(
-              'Be yourself in every',
+              getLanguage(context).beYourself,
               style: textBlackBold20(),
             ),
             SizedBox(
               height: 5.0,
             ),
             Text(
-              'message.',
+              getLanguage(context).message,
               style: textBlackBold20(),
             ),
             SizedBox(
               height: 40.0,
             ),
             buildMainButton(
-              text: 'Continue',
+              text: getLanguage(context).continu,
               onPressed: () {
                 navigateTo(
                   context: context,
@@ -57,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {},
               child: Text(
-                'Terms & Privacy Policy',
+                getLanguage(context).termsPrivacy,
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontWeight: FontWeight.bold,

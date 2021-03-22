@@ -1,5 +1,8 @@
 import 'package:chat_demo/modules/view_image/view_image_screen.dart';
+import 'package:chat_demo/shared/cubit/cubit.dart';
+import 'package:chat_demo/shared/localization/language_model.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //Color components
@@ -533,3 +536,20 @@ String getUserImage() => preferences.get('imagePath');
 String getUserPhone() => preferences.get('phone');
 
 // End of SharedPreferences
+
+LanguageModel getLanguage(context) => AppCubit.get(context).languageModel;
+
+//Toast
+
+void showToastApp({
+  @required String errorMsg,
+}) =>
+    Fluttertoast.showToast(
+      msg: errorMsg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 2,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
