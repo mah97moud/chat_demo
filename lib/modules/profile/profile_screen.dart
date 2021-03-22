@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Profile'),
+            title: Text(getLanguage(context).profile),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -79,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        '${getFirstName() ?? 'Username'} ${getLastName() ?? ''}',
+                        '${getFirstName() ?? getLanguage(context).username} ${getLastName() ?? ''}',
                         style: textBlack18(),
                       ),
                       SizedBox(
@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                         showCursor: false,
                         controller: firstNameController,
                         decoration: InputDecoration(
-                          hintText: 'first name',
+                          hintText: getLanguage(context).firstName,
                           hintStyle: textGrey16(),
                           contentPadding: EdgeInsets.only(left: 15.0),
                           enabledBorder: UnderlineInputBorder(
@@ -114,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
                         showCursor: false,
                         controller: lastNameController,
                         decoration: InputDecoration(
-                          hintText: 'last name',
+                          hintText: getLanguage(context).lastName,
                           hintStyle: textGrey16(),
                           contentPadding: EdgeInsets.only(left: 15.0),
                           enabledBorder: UnderlineInputBorder(
@@ -142,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              'Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts. When you initiate or accept new conversation, and when you join new groups.',
+                              getLanguage(context).text,
                               style: textBlack12(),
                               textAlign: TextAlign.left,
                             ),
@@ -164,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                           firstNameController: firstNameController,
                           lastNameController: lastNameController);
                     },
-                    text: 'save',
+                    text: getLanguage(context).save,
                   ),
                 ),
               ],

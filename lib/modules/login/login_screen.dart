@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                           height: 40.0,
                         ),
                         Text(
-                          'Enter your phone number to get started',
+                          getLanguage(context).enterNumber,
                           textAlign: TextAlign.center,
                           style: textBlackBold20().copyWith(
                             fontSize: 22.0,
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                         Container(
                           width: 270.0,
                           child: Text(
-                            'You will receive a verification code. Carrier rates may apply',
+                            getLanguage(context).receiveNotificationCode,
                             style: textBlack14(),
                             textAlign: TextAlign.center,
                           ),
@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                                 controller: codeController,
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
-                                  labelText: 'code',
+                                  labelText: getLanguage(context).code,
                                   hintText: '+',
                                   hintStyle: textBlackBold20(),
                                   labelStyle: textBlackBold14().copyWith(
@@ -97,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 15.0),
-                                    labelText: 'Phone number',
+                                    labelText: getLanguage(context).phoneNumber,
                                     labelStyle: textBlackBold14().copyWith(
                                       color: kBlueColor(),
                                     ),
@@ -127,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                           height: 15.0,
                         ),
                         buildMainButton(
-                          text: 'Next',
+                          text: getLanguage(context).next,
                           onPressed: () {
                             print(phoneController.text);
                             print(codeController.text);
@@ -146,7 +146,12 @@ class LoginScreen extends StatelessWidget {
             ),
           );
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is LoginErrorState)
+            showToastApp(
+              errorMsg: getLanguage(context).numberError,
+            );
+        },
       ),
     );
   }

@@ -1,9 +1,12 @@
 import 'package:chat_demo/shared/components.dart';
+import 'package:chat_demo/shared/cubit/cubit.dart';
+import 'package:chat_demo/shared/cubit/states.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'modules/home/home_screen.dart';
@@ -23,9 +26,14 @@ void main() async {
     myWidget = WelcomeScreen();
   }
 
+  String translation =
+      await rootBundle.loadString('assets/translations/ar.json');
+  print(translation);
+
   runApp(
     MyApp(
       myWidget: myWidget,
+      translation: translation,
     ),
   );
 }
@@ -33,8 +41,9 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   final Widget myWidget;
+  final String translation;
 
-  const MyApp({@required this.myWidget});
+  const MyApp({@required this.myWidget, this.translation});
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -94,18 +103,32 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: [
         BlocProvider(
           create: (context) => ProfileCubit()..getRealTimeData(),
-        )
-      ],
-      child: MaterialApp(
-        title: 'Chat App Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: kMainColor(),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: kBlueColor(),
-          ),
         ),
-        home: widget.myWidget,
+        BlocProvider(
+          create: (context) => AppCubit()
+            ..loadLanguage(
+              languageJson: widget.translation,
+            ),
+        ),
+      ],
+      child: BlocConsumer<AppCubit, AppStates>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Chat App Demo',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primaryColor: kMainColor(),
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: kBlueColor(),
+              ),
+            ),
+            home: Directionality(
+              child: widget.myWidget,
+              textDirection: TextDirection.rtl,
+            ),
+          );
+        },
+        listener: (context, state) {},
       ),
     );
   }

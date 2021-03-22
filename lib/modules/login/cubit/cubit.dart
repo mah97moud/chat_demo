@@ -16,20 +16,24 @@ class LoginCubit extends Cubit<LoginStates> {
     context,
   }) async {
     emit(LoginLoadingState());
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+$code$phone',
-      verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException e) {},
-      codeSent: (String verificationId, int resendToken) {
-        emit(LoginSuccessState());
-        navigateTo(
-          context: context,
-          widget: VerificationScreen(
-            code: verificationId,
-          ),
-        );
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
+    if (phone == "") {
+      emit(LoginErrorState());
+    } else {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+$code$phone',
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException e) {},
+        codeSent: (String verificationId, int resendToken) {
+          emit(LoginSuccessState());
+          navigateTo(
+            context: context,
+            widget: VerificationScreen(
+              code: verificationId,
+            ),
+          );
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
+      );
+    }
   }
 }

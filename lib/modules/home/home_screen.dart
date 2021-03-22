@@ -83,9 +83,13 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Chats',
-                          style: textGreyBold18(),
+                        Container(
+                          color: Colors.red,
+                          width: double.infinity,
+                          child: Text(
+                            getLanguage(context).chats,
+                            style: textGreyBold18(),
+                          ),
                         ),
                         Expanded(
                           child: ListView.separated(

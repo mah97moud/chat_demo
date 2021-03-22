@@ -26,7 +26,7 @@ class VerificationScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Enter your verification code.',
+                    getLanguage(context).enterCode,
                     style: textBlackBold18(),
                   ),
                   SizedBox(
@@ -58,7 +58,7 @@ class VerificationScreen extends StatelessWidget {
                         firebaseCode: this.code,
                       );
                     },
-                    text: 'verify',
+                    text: getLanguage(context).verify,
                   ),
                 ],
               ),
