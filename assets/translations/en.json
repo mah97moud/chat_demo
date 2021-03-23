@@ -19,6 +19,8 @@
   "save": "save",
   "settings": "settings",
   "username": "Username",
-  "text": "Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts. When you initiate or accept new conversation, and when you join new groups."
-
+  "text": "Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts. When you initiate or accept new conversation, and when you join new groups.",
+  "Language": "Language",
+  "english": "English",
+  "arabic": "Arabic"
 }

@@ -1,6 +1,8 @@
+import 'package:chat_demo/shared/components.dart';
 import 'package:chat_demo/shared/cubit/states.dart';
 import 'package:chat_demo/shared/localization/language_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -10,10 +12,24 @@ class AppCubit extends Cubit<AppStates> {
   LanguageModel languageModel;
   TextDirection textDirectionApp = TextDirection.ltr;
 
-  loadLanguage({
+  void changeLanguage({
+    @required String code,
+  }) async {
+    String translation =
+        await rootBundle.loadString('assets/translations/$code.json');
+
+    loadLanguage(
+      languageJson: translation,
+    );
+    saveLanguageCode(code: code);
+    emit(ChangeLanguageState());
+  }
+
+  void loadLanguage({
     @required String languageJson,
   }) {
     languageModel = LanguageModel.fromJson(languageJson);
+    print(languageJson);
     emit(LoadLanguageState());
   }
 

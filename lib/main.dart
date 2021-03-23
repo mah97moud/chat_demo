@@ -26,8 +26,10 @@ void main() async {
     myWidget = WelcomeScreen();
   }
 
+  String code = getLanguageCode();
+
   String translation =
-      await rootBundle.loadString('assets/translations/ar.json');
+      await rootBundle.loadString('assets/translations/${code ?? 'en'}.json');
   print(translation);
 
   runApp(
@@ -124,7 +126,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             ),
             home: Directionality(
               child: widget.myWidget,
-              textDirection: TextDirection.rtl,
+              textDirection: changeDirection(context),
             ),
           );
         },

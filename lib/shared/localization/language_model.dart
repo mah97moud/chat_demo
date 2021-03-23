@@ -22,6 +22,9 @@ class LanguageModel {
   final String text;
   final String settings;
   final String username;
+  final String language;
+  final String english;
+  final String arabic;
 
   LanguageModel({
     this.numberError,
@@ -45,6 +48,9 @@ class LanguageModel {
     this.text,
     this.settings,
     this.username,
+    this.language,
+    this.english,
+    this.arabic,
   });
 
   factory LanguageModel.fromJson(language) {
@@ -71,6 +77,9 @@ class LanguageModel {
       text: json['text'] as String,
       settings: json['settings'] as String,
       username: json['username'] as String,
+      language: json['Language'] as String,
+      english: json['english'] as String,
+      arabic: json['arabic'] as String,
     );
   }
 }
