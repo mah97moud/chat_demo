@@ -24,5 +24,8 @@
   "Language": "Language",
   "english": "English",
   "arabic": "Arabic",
-  "change-language": "Change Language"
+  "change-language": "Change Language",
+  "dark": "Dark",
+  "light": "Light"
+
 }

@@ -24,5 +24,7 @@
   "Language": "اللغه",
   "english": "الانجليزيه",
   "arabic": "العربيه",
-  "change-language": "تغيير اللغه"
+  "change-language": "تغيير اللغه",
+  "dark": "داكن",
+  "light": "فاتح"
 }

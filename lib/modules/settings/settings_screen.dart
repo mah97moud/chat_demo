@@ -2,6 +2,7 @@ import 'package:chat_demo/modules/language/langaue_screen.dart';
 import 'package:chat_demo/modules/profile/profile_screen.dart';
 import 'package:chat_demo/modules/settings/cubit/cubit.dart';
 import 'package:chat_demo/modules/settings/cubit/states.dart';
+import 'package:chat_demo/modules/theme/theme_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:chat_demo/shared/cubit/cubit.dart';
 import 'package:chat_demo/shared/cubit/states.dart';
@@ -149,7 +150,9 @@ class SettingsScreen extends StatelessWidget {
                           height: 5.0,
                         ),
                         ListTile(
-                          onTap: () {},
+                          onTap: () {
+                            navigateTo(context: context, widget: ThemeScreen());
+                          },
                           leading: Icon(
                             Icons.wb_sunny_rounded,
                             color: kBlackColor(),
