@@ -9,6 +9,7 @@
   "receive-notification-code": "You will receive a verification code. Carrier rates may apply",
   "phone-number": "Phone number",
   "code": "code",
+  "select-code": "en",
   "next": "next",
   "number-error": "Please Enter A Valid Number",
   "enter-code": "Enter your verification code.",
@@ -22,5 +23,6 @@
   "text": "Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts. When you initiate or accept new conversation, and when you join new groups.",
   "Language": "Language",
   "english": "English",
-  "arabic": "Arabic"
+  "arabic": "Arabic",
+  "change-language": "Change Language"
 }

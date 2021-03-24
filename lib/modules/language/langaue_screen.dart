@@ -27,9 +27,6 @@ class LanguageScreen extends StatelessWidget {
                       AppCubit.get(context).changeLanguage(
                         code: 'en',
                       );
-                      AppCubit.get(context).changeDirection(
-                        textDirection: TextDirection.ltr,
-                      );
                     },
                     text: getLanguage(context).english,
                   ),
@@ -40,9 +37,6 @@ class LanguageScreen extends StatelessWidget {
                     onPressed: () {
                       AppCubit.get(context).changeLanguage(
                         code: 'ar',
-                      );
-                      AppCubit.get(context).changeDirection(
-                        textDirection: TextDirection.rtl,
                       );
                     },
                     text: getLanguage(context).arabic,
