@@ -77,18 +77,20 @@ class SettingsScreen extends StatelessWidget {
                                 context: context, widget: LanguageScreen());
                           },
                           leading: Icon(
-                            Icons.message,
+                            Icons.translate_outlined,
                             color: kBlackColor(),
                           ),
                           contentPadding: EdgeInsets.only(left: 0.0),
                           title: Column(
                             children: [
-                              Text('Change Language'),
+                              Text(
+                                getLanguage(context).changeLanguage,
+                              ),
                               SizedBox(
                                 height: 2.0,
                               ),
                               Text(
-                                'Ar',
+                                getLanguage(context).selectCode,
                                 style: textBlack14(),
                               ),
                             ],

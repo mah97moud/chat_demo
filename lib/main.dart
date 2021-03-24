@@ -1,3 +1,4 @@
+import 'package:chat_demo/modules/select_language/langaue_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:chat_demo/shared/cubit/cubit.dart';
 import 'package:chat_demo/shared/cubit/states.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'modules/home/home_screen.dart';
 import 'modules/profile/cubit/cubit.dart';
-import 'modules/welcome/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ void main() async {
   if (user != null) {
     myWidget = HomeScreen();
   } else {
-    myWidget = WelcomeScreen();
+    myWidget = SelectLanguageScreen();
   }
 
   String code = getLanguageCode();

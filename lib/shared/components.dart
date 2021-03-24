@@ -530,6 +530,8 @@ Future<bool> saveUserPhone({@required String phone}) =>
     preferences.setString('phone', phone);
 Future<bool> saveLanguageCode({@required String code}) =>
     preferences.setString('code', code);
+Future<bool> saveDirection({@required bool isRtf}) =>
+    preferences.setBool('isRtf', isRtf);
 
 String getFirstName() => preferences.get('firstName');
 String getLastName() => preferences.get('LastName');
@@ -537,12 +539,13 @@ String getUserId() => preferences.get('userId');
 String getUserImage() => preferences.get('imagePath');
 String getUserPhone() => preferences.get('phone');
 String getLanguageCode() => preferences.get('code');
+bool getDirection() => preferences.getBool('isRtf');
 
 // End of SharedPreferences
 
 LanguageModel getLanguage(context) => AppCubit.get(context).languageModel;
 TextDirection changeDirection(context) =>
-    AppCubit.get(context).textDirectionApp;
+    getDirection() ?? false ? TextDirection.rtl : TextDirection.ltr;
 
 //Toast
 
