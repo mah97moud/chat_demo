@@ -133,7 +133,7 @@ class _UserScreenState extends State<UserScreen> {
             ),
             Padding(
               padding: EdgeInsets.all(15.0),
-              child: buildMainButton(
+              child: buildRaisedButton(
                 onPressed: () {
                   updateUser();
                   clearTextField();

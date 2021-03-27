@@ -12,8 +12,9 @@ class AppCubit extends Cubit<AppStates> {
   LanguageModel languageModel;
   TextDirection textDirectionApp = TextDirection.ltr;
   bool isRtf = false;
+  bool isDark = false;
 
-  void changeLanguage({
+  Future<void> changeLanguage({
     @required String code,
   }) async {
     String translation =
@@ -55,4 +56,9 @@ class AppCubit extends Cubit<AppStates> {
   //     textDirectionApp = TextDirection.ltr;
   //   }
   // }
+
+  void changeAppTheme(bool dark) {
+    isDark = dark;
+    emit(ChangeThemeState());
+  }
 }

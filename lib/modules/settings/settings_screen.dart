@@ -1,11 +1,10 @@
-import 'package:chat_demo/modules/language/langaue_screen.dart';
 import 'package:chat_demo/modules/profile/profile_screen.dart';
 import 'package:chat_demo/modules/settings/cubit/cubit.dart';
 import 'package:chat_demo/modules/settings/cubit/states.dart';
-import 'package:chat_demo/modules/theme/theme_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:chat_demo/shared/cubit/cubit.dart';
 import 'package:chat_demo/shared/cubit/states.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,14 +49,15 @@ class SettingsScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '${getFirstName() ?? getLanguage(context).username} ${getLastName() ?? ''}',
-                                    style: textBlackBold18(),
+                                    style:
+                                        Theme.of(context).textTheme.headline6,
                                   ),
                                   SizedBox(
                                     height: 2.0,
                                   ),
                                   Text(
                                     getUserPhone().toString(),
-                                    style: textGreyBold12(),
+                                    style: Theme.of(context).textTheme.caption,
                                   ),
                                 ],
                               ),
@@ -74,8 +74,60 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            navigateTo(
-                                context: context, widget: LanguageScreen());
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return buildAlertDialog(
+                                  title: getLanguage(context).changeLanguage,
+                                  context: context,
+                                  value: appCubit(context).isDark,
+                                  onChange: (isDark) {
+                                    appCubit(context).changeAppTheme(isDark);
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.all(20.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        buildRaisedButton(
+                                          onPressed: () {
+                                            AppCubit.get(context)
+                                                .changeLanguage(
+                                              code: 'en',
+                                            )
+                                                .then(
+                                              (value) {
+                                                Navigator.pop(context);
+                                              },
+                                            );
+                                          },
+                                          text: getLanguage(context).english,
+                                        ),
+                                        SizedBox(
+                                          height: 20.0,
+                                        ),
+                                        buildRaisedButton(
+                                          onPressed: () {
+                                            AppCubit.get(context)
+                                                .changeLanguage(
+                                              code: 'ar',
+                                            )
+                                                .then(
+                                              (value) {
+                                                Navigator.pop(context);
+                                              },
+                                            );
+                                          },
+                                          text: getLanguage(context).arabic,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
                           },
                           leading: Icon(
                             Icons.translate_outlined,
@@ -92,55 +144,7 @@ class SettingsScreen extends StatelessWidget {
                               ),
                               Text(
                                 getLanguage(context).selectCode,
-                                style: textBlack14(),
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.notifications,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Notifications'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                              Text(
-                                'On',
-                                style: textBlack14(),
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.lock,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Privacy'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                              Text(
-                                'Screen lock off, Registration lock off',
-                                style: textBlack14(),
+                                style: Theme.of(context).textTheme.caption,
                               ),
                             ],
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +155,22 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            navigateTo(context: context, widget: ThemeScreen());
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return buildAlertDialog(
+                                  title: getLanguage(context).changeMode,
+                                  context: context,
+                                  value: appCubit(context).isDark,
+                                  onChange: (isDark) {
+                                    appCubit(context).changeAppTheme(isDark);
+                                  },
+                                  text: appCubit(context).isDark
+                                      ? getLanguage(context).dark
+                                      : getLanguage(context).light,
+                                );
+                              },
+                            );
                           },
                           leading: Icon(
                             Icons.wb_sunny_rounded,
@@ -160,137 +179,13 @@ class SettingsScreen extends StatelessWidget {
                           contentPadding: EdgeInsets.only(left: 0.0),
                           title: Column(
                             children: [
-                              Text('Appearance'),
+                              Text(getLanguage(context).appearance),
                               SizedBox(
                                 height: 2.0,
                               ),
                               Text(
-                                'Theme System default,Language System default',
-                                style: textBlack14(),
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.image,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Chats and media'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.store,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Storage'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.link,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Linked devices'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.help,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Help'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.settings_ethernet,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Advanced'),
-                              SizedBox(
-                                height: 2.0,
-                              ),
-                            ],
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        ListTile(
-                          onTap: () {},
-                          leading: Icon(
-                            Icons.favorite,
-                            color: kBlackColor(),
-                          ),
-                          trailing: Icon(
-                            Icons.open_in_new_outlined,
-                            color: kBlackColor(),
-                          ),
-                          contentPadding: EdgeInsets.only(left: 0.0),
-                          title: Column(
-                            children: [
-                              Text('Donate to App'),
-                              SizedBox(
-                                height: 2.0,
+                                getLanguage(context).changeMode,
+                                style: Theme.of(context).textTheme.caption,
                               ),
                             ],
                             crossAxisAlignment: CrossAxisAlignment.start,

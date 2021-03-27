@@ -50,7 +50,7 @@ class VerificationScreen extends StatelessWidget {
                   SizedBox(
                     height: 50.0,
                   ),
-                  buildMainButton(
+                  buildRaisedButton(
                     onPressed: () {
                       VerificationCubit.get(context).codeVerification(
                         context: context,

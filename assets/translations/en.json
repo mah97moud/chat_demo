@@ -26,6 +26,8 @@
   "arabic": "Arabic",
   "change-language": "Change Language",
   "dark": "Dark",
-  "light": "Light"
-
+  "light": "Light",
+  "dark-mode": "Dark Mode",
+  "changeMode": "Change Mode",
+  "appearance": "Appearance"
 }

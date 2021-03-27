@@ -118,12 +118,30 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           return MaterialApp(
             title: 'Chat App Demo',
             debugShowCheckedModeBanner: false,
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              primaryColor: Colors.black54,
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: kYellowColor(),
+              ),
+              buttonTheme: ButtonThemeData(
+                buttonColor: kYellowColor(),
+                textTheme: ButtonTextTheme.primary,
+              ),
+            ),
             theme: ThemeData(
+              brightness: Brightness.light,
               primaryColor: kMainColor(),
               floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: kBlueColor(),
               ),
+              buttonTheme: ButtonThemeData(
+                buttonColor: kBlueColor(),
+                textTheme: ButtonTextTheme.primary,
+              ),
             ),
+            themeMode:
+                appCubit(context).isDark ? ThemeMode.dark : ThemeMode.light,
             home: Directionality(
               child: widget.myWidget,
               textDirection: changeDirection(context),

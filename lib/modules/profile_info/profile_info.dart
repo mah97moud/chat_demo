@@ -142,7 +142,7 @@ class ProfileInfoScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(15.0),
-                    child: buildMainButton(
+                    child: buildRaisedButton(
                       onPressed: () {
                         ProfileCubit.get(context)
                             .updateUser(

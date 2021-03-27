@@ -34,7 +34,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 builder: (context) => Scaffold(
-                  backgroundColor: kWhiteColor(),
                   appBar: AppBar(
                     elevation: 0.0,
                     title: InkWell(
@@ -91,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                               width: double.infinity,
                               child: Text(
                                 getLanguage(context).chats,
-                                style: textGreyBold18(),
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ),
                             Expanded(
@@ -146,7 +145,6 @@ class HomeScreen extends StatelessWidget {
                           navigateTo(context: context, widget: UsersScreen());
                         },
                         child: Icon(Icons.create),
-                        backgroundColor: kBlueColor(),
                       ),
                     ],
                   ),

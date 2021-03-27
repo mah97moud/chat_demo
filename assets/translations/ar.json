@@ -26,5 +26,8 @@
   "arabic": "العربيه",
   "change-language": "تغيير اللغه",
   "dark": "داكن",
-  "light": "فاتح"
+  "light": "فاتح",
+  "dark-mode": "مظهر ليلي",
+  "changeMode": "تغيير المظهر",
+  "appearance": "المظهر"
 }

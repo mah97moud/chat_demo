@@ -126,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                         SizedBox(
                           height: 15.0,
                         ),
-                        buildMainButton(
+                        buildRaisedButton(
                           text: getLanguage(context).next,
                           onPressed: () {
                             print(phoneController.text);

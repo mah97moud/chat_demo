@@ -22,7 +22,7 @@ class LanguageScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildMainButton(
+                  buildRaisedButton(
                     onPressed: () {
                       AppCubit.get(context).changeLanguage(
                         code: 'en',
@@ -33,7 +33,7 @@ class LanguageScreen extends StatelessWidget {
                   SizedBox(
                     height: 20.0,
                   ),
-                  buildMainButton(
+                  buildRaisedButton(
                     onPressed: () {
                       AppCubit.get(context).changeLanguage(
                         code: 'ar',

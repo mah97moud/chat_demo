@@ -7,3 +7,5 @@ class LoadLanguageState extends AppStates {}
 class ChangeDirectionState extends AppStates {}
 
 class ChangeLanguageState extends AppStates {}
+
+class ChangeThemeState extends AppStates {}

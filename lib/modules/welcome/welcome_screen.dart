@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(
               height: 40.0,
             ),
-            buildMainButton(
+            buildRaisedButton(
               text: getLanguage(context).continu,
               onPressed: () {
                 navigateTo(

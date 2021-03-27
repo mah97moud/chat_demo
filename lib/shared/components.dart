@@ -1,6 +1,7 @@
 import 'package:chat_demo/modules/view_image/view_image_screen.dart';
 import 'package:chat_demo/shared/cubit/cubit.dart';
 import 'package:chat_demo/shared/localization/language_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,8 @@ Color kBlackColor() => Color(0xff000000);
 Color kBlueColor() => Color(0xff2C6BEE);
 Color kGreyColor() => Color(0xffE9E9E9);
 Color kGreyColor500() => Color(0xff8b8b8b);
+Color kYellowColor() => Color(0xffffd481);
+Color kGreyDaColor() => Color(0xffcacdd2);
 //TextStyle component
 
 TextStyle textBlack12() => TextStyle(
@@ -171,19 +174,22 @@ void navigateAndFinish({
 }
 
 //Widget Component
-MaterialButton buildMainButton({
+
+Widget buildRaisedButton({
   @required Function onPressed,
   @required String text,
+  TextStyle style,
 }) {
-  return MaterialButton(
-    color: kBlueColor(),
+  return Container(
+    width: double.infinity,
     height: 40.0,
-    minWidth: double.infinity,
-    onPressed: onPressed,
-    child: Text(
-      text.toUpperCase(),
-      style: textWhite16(),
-      textAlign: TextAlign.center,
+    child: RaisedButton(
+      onPressed: onPressed,
+      child: Text(
+        text.toUpperCase(),
+        textAlign: TextAlign.center,
+        style: style,
+      ),
     ),
   );
 }
@@ -546,6 +552,7 @@ bool getDirection() => preferences.getBool('isRtf');
 LanguageModel getLanguage(context) => AppCubit.get(context).languageModel;
 TextDirection changeDirection(context) =>
     getDirection() ?? false ? TextDirection.rtl : TextDirection.ltr;
+appCubit(context) => AppCubit.get(context);
 
 //Toast
 
@@ -561,3 +568,34 @@ void showToastApp({
       textColor: Colors.white,
       fontSize: 16.0,
     );
+
+// Start Dialog
+
+AlertDialog buildAlertDialog({
+  BuildContext context,
+  String text,
+  @required String title,
+  @required bool value,
+  @required Function onChange,
+  Widget child,
+}) {
+  return AlertDialog(
+    title: Text(title),
+    content: child ??
+        Row(
+          children: [
+            Text(
+              text,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            Spacer(),
+            CupertinoSwitch(
+              value: value,
+              onChanged: onChange,
+            ),
+          ],
+        ),
+  );
+}
+
+//End Dialog

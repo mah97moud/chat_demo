@@ -82,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         Text(
                           '${getFirstName() ?? getLanguage(context).username} ${getLastName() ?? ''}',
-                          style: textBlack18(),
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                         SizedBox(
                           height: 20.0,
@@ -92,22 +92,28 @@ class ProfileScreen extends StatelessWidget {
                           controller: firstNameController,
                           decoration: InputDecoration(
                             hintText: getLanguage(context).firstName,
-                            hintStyle: textGrey16(),
+                            hintStyle: Theme.of(context).textTheme.subtitle1,
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: kBlueColor(),
+                                color: appCubit(context).isDark
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: kBlueColor(),
+                                color: appCubit(context).isDark
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                                 width: 2.0,
                               ),
                             ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: kBlueColor(),
+                                color: appCubit(context).isDark
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                           ),
@@ -117,22 +123,28 @@ class ProfileScreen extends StatelessWidget {
                           controller: lastNameController,
                           decoration: InputDecoration(
                             hintText: getLanguage(context).lastName,
-                            hintStyle: textGrey16(),
+                            hintStyle: Theme.of(context).textTheme.subtitle1,
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: kBlueColor(),
+                                color: appCubit(context).isDark
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: kBlueColor(),
+                                color: appCubit(context).isDark
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                                 width: 2.0,
                               ),
                             ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: kBlueColor(),
+                                color: appCubit(context).isDark
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                           ),
@@ -145,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 getLanguage(context).text,
-                                style: textBlack12(),
+                                style: Theme.of(context).textTheme.subtitle1,
                                 textAlign: TextAlign.left,
                               ),
                             ),
@@ -156,7 +168,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(15.0),
-                    child: buildMainButton(
+                    child: buildRaisedButton(
                       onPressed: () {
                         ProfileCubit.get(context).updateUser(
                           firstName: firstNameController.text,
