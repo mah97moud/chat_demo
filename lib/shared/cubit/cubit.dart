@@ -59,6 +59,7 @@ class AppCubit extends Cubit<AppStates> {
 
   void changeAppTheme(bool dark) {
     isDark = dark;
+    saveIsDark(isDark: isDark);
     emit(ChangeThemeState());
   }
 }

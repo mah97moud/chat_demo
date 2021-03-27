@@ -161,11 +161,11 @@ class SettingsScreen extends StatelessWidget {
                                 return buildAlertDialog(
                                   title: getLanguage(context).changeMode,
                                   context: context,
-                                  value: appCubit(context).isDark,
+                                  value: getIsDark(),
                                   onChange: (isDark) {
                                     appCubit(context).changeAppTheme(isDark);
                                   },
-                                  text: appCubit(context).isDark
+                                  text: getIsDark()
                                       ? getLanguage(context).dark
                                       : getLanguage(context).light,
                                 );

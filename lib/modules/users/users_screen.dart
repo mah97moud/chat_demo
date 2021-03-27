@@ -13,7 +13,7 @@ class UsersScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         title: Text(
-          'Users',
+          getLanguage(context).users,
         ),
       ),
       body: BlocProvider(
@@ -38,6 +38,7 @@ class UsersScreen extends StatelessWidget {
                               UsersCubit.get(context).usersData[index]
                                   ['userId'])
                             return buildItem(
+                              style: Theme.of(context).textTheme.headline6,
                               // item: allUserData[index],
                               item: UsersCubit.get(context).usersData[index],
                               onTap: () {

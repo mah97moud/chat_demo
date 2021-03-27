@@ -140,8 +140,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 textTheme: ButtonTextTheme.primary,
               ),
             ),
-            themeMode:
-                appCubit(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            themeMode: getIsDark() ? ThemeMode.dark : ThemeMode.light,
             home: Directionality(
               child: widget.myWidget,
               textDirection: changeDirection(context),

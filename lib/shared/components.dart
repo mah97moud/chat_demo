@@ -196,7 +196,11 @@ Widget buildRaisedButton({
 
 //Build user Item
 
-Widget buildItem({@required Function onTap, item}) {
+Widget buildItem({
+  @required Function onTap,
+  item,
+  TextStyle style,
+}) {
   return InkWell(
     onTap: onTap,
     child: Padding(
@@ -216,56 +220,56 @@ Widget buildItem({@required Function onTap, item}) {
             children: [
               Text(
                 '${item['firstName'] + ' ' + item['lastName']}',
-                style: textBlackBold14(),
+                style: style,
               ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                'This is the instruction manual.',
-                style: textGrey14(),
-              ),
+              // SizedBox(
+              //   height: 5.0,
+              // ),
+              // Text(
+              //   'This is the instruction manual.',
+              //   style: textGrey14(),
+              // ),
             ],
           ),
           Spacer(),
-          Column(
-            children: [
-              Text(
-                'Now',
-                style: textBlackBold14(),
-              ),
-              Container(
-                width: 30.0,
-                child: Stack(
-                  children: [
-                    Align(
-                      child: CircleAvatar(
-                        radius: 8.0,
-                        backgroundColor: kGreyColor500(),
-                        child: Icon(
-                          Icons.check,
-                          size: 10.0,
-                          color: kWhiteColor(),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      child: CircleAvatar(
-                        radius: 8.0,
-                        backgroundColor: kGreyColor500(),
-                        child: Icon(
-                          Icons.check,
-                          size: 10.0,
-                          color: kWhiteColor(),
-                        ),
-                      ),
-                      alignment: Alignment.centerRight,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+          // Column(
+          //   children: [
+          //     Text(
+          //       'Now',
+          //       style: textBlackBold14(),
+          //     ),
+          //     Container(
+          //       width: 30.0,
+          //       child: Stack(
+          //         children: [
+          //           Align(
+          //             child: CircleAvatar(
+          //               radius: 8.0,
+          //               backgroundColor: kGreyColor500(),
+          //               child: Icon(
+          //                 Icons.check,
+          //                 size: 10.0,
+          //                 color: kWhiteColor(),
+          //               ),
+          //             ),
+          //           ),
+          //           Align(
+          //             child: CircleAvatar(
+          //               radius: 8.0,
+          //               backgroundColor: kGreyColor500(),
+          //               child: Icon(
+          //                 Icons.check,
+          //                 size: 10.0,
+          //                 color: kWhiteColor(),
+          //               ),
+          //             ),
+          //             alignment: Alignment.centerRight,
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     ),
@@ -538,6 +542,8 @@ Future<bool> saveLanguageCode({@required String code}) =>
     preferences.setString('code', code);
 Future<bool> saveDirection({@required bool isRtf}) =>
     preferences.setBool('isRtf', isRtf);
+Future<bool> saveIsDark({@required bool isDark}) =>
+    preferences.setBool('isDark', isDark);
 
 String getFirstName() => preferences.get('firstName');
 String getLastName() => preferences.get('LastName');
@@ -546,6 +552,7 @@ String getUserImage() => preferences.get('imagePath');
 String getUserPhone() => preferences.get('phone');
 String getLanguageCode() => preferences.get('code');
 bool getDirection() => preferences.getBool('isRtf');
+bool getIsDark() => preferences.getBool('isDark');
 
 // End of SharedPreferences
 

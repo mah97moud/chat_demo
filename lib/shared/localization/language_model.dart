@@ -32,6 +32,7 @@ class LanguageModel {
   final String darkMode;
   final String changeMode;
   final String appearance;
+  final String users;
 
   LanguageModel({
     this.numberError,
@@ -65,6 +66,7 @@ class LanguageModel {
     this.darkMode,
     this.changeMode,
     this.appearance,
+    this.users,
   });
 
   factory LanguageModel.fromJson(language) {
@@ -101,6 +103,7 @@ class LanguageModel {
       darkMode: json['dark-mode'] as String,
       changeMode: json['changeMode'] as String,
       appearance: json['appearance'] as String,
+      users: json['users'] as String,
     );
   }
 }
