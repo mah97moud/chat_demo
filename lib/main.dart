@@ -1,3 +1,4 @@
+import 'package:chat_demo/modules/home/cubit/cubit.dart';
 import 'package:chat_demo/modules/select_language/langaue_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:chat_demo/shared/cubit/cubit.dart';
@@ -110,13 +111,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           create: (context) => AppCubit()
             ..loadLanguage(
               languageJson: widget.translation,
-            ),
+            )
+            ..changeAppTheme(false),
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit()
+            ..getMyChats()
+            ..getRealTimeData(),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'Chat App Demo',
+            title: 'Chat Me',
             debugShowCheckedModeBanner: false,
             darkTheme: ThemeData(
               brightness: Brightness.dark,
@@ -131,7 +138,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             ),
             theme: ThemeData(
               brightness: Brightness.light,
-              primaryColor: kMainColor(),
+              primaryColor: kBlueColor(),
               floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: kBlueColor(),
               ),

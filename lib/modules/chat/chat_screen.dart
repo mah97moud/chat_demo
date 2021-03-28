@@ -60,35 +60,35 @@ class ChatScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                actions: [
-                  GestureDetector(
-                    child: Icon(Icons.videocam),
-                    onTap: () {
-                      print('Photo Camera');
-                    },
-                  ),
-                  SizedBox(
-                    width: 15.0,
-                  ),
-                  GestureDetector(
-                    child: Icon(Icons.phone),
-                    onTap: () {
-                      print('Phone Call');
-                    },
-                  ),
-                  SizedBox(
-                    width: 15.0,
-                  ),
-                  GestureDetector(
-                    child: Icon(Icons.more_vert),
-                    onTap: () {
-                      print('More');
-                    },
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                ],
+                // actions: [
+                //   GestureDetector(
+                //     child: Icon(Icons.videocam),
+                //     onTap: () {
+                //       print('Photo Camera');
+                //     },
+                //   ),
+                //   SizedBox(
+                //     width: 15.0,
+                //   ),
+                //   GestureDetector(
+                //     child: Icon(Icons.phone),
+                //     onTap: () {
+                //       print('Phone Call');
+                //     },
+                //   ),
+                //   SizedBox(
+                //     width: 15.0,
+                //   ),
+                //   GestureDetector(
+                //     child: Icon(Icons.more_vert),
+                //     onTap: () {
+                //       print('More');
+                //     },
+                //   ),
+                //   SizedBox(
+                //     width: 10.0,
+                //   ),
+                // ],
               ),
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

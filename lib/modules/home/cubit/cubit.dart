@@ -12,7 +12,7 @@ class HomeCubit extends Cubit<HomeStates> {
   var userData = {};
   var myChats = [];
 
-  getRealTimeData() {
+  void getRealTimeData() {
     emit(HomeLoadingState());
     users.doc(getUserId()).snapshots().listen((event) {
       emit(HomeSuccessDataState());
@@ -27,7 +27,7 @@ class HomeCubit extends Cubit<HomeStates> {
     });
   }
 
-  getMyChats() {
+  void getMyChats() {
     emit(HomeLoadingMyChatsState());
     users.doc(getUserId()).collection('chats').get().then((value) {
       emit(HomeSuccessMyChatsState());

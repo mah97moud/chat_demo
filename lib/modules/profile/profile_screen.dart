@@ -96,24 +96,21 @@ class ProfileScreen extends StatelessWidget {
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: appCubit(context).isDark
-                                    ? kYellowColor()
-                                    : kBlueColor(),
+                                color:
+                                    getIsDark() ? kYellowColor() : kBlueColor(),
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: appCubit(context).isDark
-                                    ? kYellowColor()
-                                    : kBlueColor(),
+                                color:
+                                    getIsDark() ? kYellowColor() : kBlueColor(),
                                 width: 2.0,
                               ),
                             ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: appCubit(context).isDark
-                                    ? kYellowColor()
-                                    : kBlueColor(),
+                                color:
+                                    getIsDark() ? kYellowColor() : kBlueColor(),
                               ),
                             ),
                           ),
@@ -127,24 +124,21 @@ class ProfileScreen extends StatelessWidget {
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: appCubit(context).isDark
-                                    ? kYellowColor()
-                                    : kBlueColor(),
+                                color:
+                                    getIsDark() ? kYellowColor() : kBlueColor(),
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: appCubit(context).isDark
-                                    ? kYellowColor()
-                                    : kBlueColor(),
+                                color:
+                                    getIsDark() ? kYellowColor() : kBlueColor(),
                                 width: 2.0,
                               ),
                             ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: appCubit(context).isDark
-                                    ? kYellowColor()
-                                    : kBlueColor(),
+                                color:
+                                    getIsDark() ? kYellowColor() : kBlueColor(),
                               ),
                             ),
                           ),

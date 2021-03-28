@@ -131,7 +131,6 @@ class SettingsScreen extends StatelessWidget {
                           },
                           leading: Icon(
                             Icons.translate_outlined,
-                            color: kBlackColor(),
                           ),
                           contentPadding: EdgeInsets.only(left: 0.0),
                           title: Column(
@@ -174,7 +173,6 @@ class SettingsScreen extends StatelessWidget {
                           },
                           leading: Icon(
                             Icons.wb_sunny_rounded,
-                            color: kBlackColor(),
                           ),
                           contentPadding: EdgeInsets.only(left: 0.0),
                           title: Column(

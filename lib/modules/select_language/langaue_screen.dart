@@ -12,70 +12,73 @@ class SelectLanguageScreen extends StatelessWidget {
       builder: (context, state) {
         return Directionality(
           textDirection: changeDirection(context),
-          child: Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              title: Text(
-                'Chaty',
-                style: textBlackBold20(),
-              ),
-            ),
-            body: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        child: Text(
-                          "Select your Language",
-                          style: textBlackBold20(),
+          child: SafeArea(
+            child: Scaffold(
+              body: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 50.0,
+                          backgroundImage: AssetImage('assets/images/logo.png'),
+                          backgroundColor: Colors.transparent,
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        child: Text(
-                          "من فضلك اختر اللغه",
-                          style: textBlackBold20(),
-                          textDirection: TextDirection.rtl,
+                        SizedBox(
+                          height: 70.0,
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildRaisedButton(
-                        onPressed: () {
-                          AppCubit.get(context).changeLanguage(
-                            code: 'en',
-                          );
-                          navigateTo(context: context, widget: WelcomeScreen());
-                        },
-                        text: 'English',
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      buildRaisedButton(
-                        onPressed: () {
-                          AppCubit.get(context).changeLanguage(
-                            code: 'ar',
-                          );
-                          navigateTo(context: context, widget: WelcomeScreen());
-                        },
-                        text: 'اللغه العربيه',
-                      ),
-                    ],
-                  ),
-                ],
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            "Select your Language",
+                            style: textBlackBold20(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            "من فضلك اختر اللغه",
+                            style: textBlackBold20(),
+                            textDirection: TextDirection.rtl,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        buildRaisedButton(
+                          onPressed: () {
+                            AppCubit.get(context).changeLanguage(
+                              code: 'en',
+                            );
+                            navigateTo(
+                                context: context, widget: WelcomeScreen());
+                          },
+                          text: 'English',
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        buildRaisedButton(
+                          onPressed: () {
+                            AppCubit.get(context).changeLanguage(
+                              code: 'ar',
+                            );
+                            navigateTo(
+                                context: context, widget: WelcomeScreen());
+                          },
+                          text: 'اللغه العربيه',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

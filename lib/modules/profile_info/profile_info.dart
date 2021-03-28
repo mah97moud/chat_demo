@@ -149,8 +149,12 @@ class ProfileInfoScreen extends StatelessWidget {
                               firstName: firstNameController.text,
                               lastName: lastNameController.text,
                             )
-                            .then((value) => navigateTo(
-                                context: context, widget: HomeScreen()));
+                            .then(
+                              (value) => navigateAndFinish(
+                                context: context,
+                                widget: HomeScreen(),
+                              ),
+                            );
                         ProfileCubit.get(context).clearTextField(
                             firstNameController: firstNameController,
                             lastNameController: lastNameController);

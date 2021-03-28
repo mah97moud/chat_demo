@@ -31,6 +31,9 @@ dependencies:
   flutter_bloc: ^6.1.1
   dio: ^3.0.10
   fluttertoast: ^7.1.8
+  flutter_launcher_icons: ^0.8.0
+  flutter_launcher_name: ^0.0.1
+  flutter_native_splash: ^0.3.2
 #  firebase
   firebase_core: ^0.7.0
   firebase_auth: ^0.20.0+1
@@ -42,6 +45,20 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.8.0
+  flutter_launcher_name: ^0.0.1
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+flutter_launcher_name:
+  name: "ChatMe"
+flutter_native_splash:
+  color: "#2C6BEE"
+  background_image: "assets/images/welcome_logo.png"
+  image: assets/images/welcome_logo.png
 
 
 # For information on the generic Dart part of this file, see the
