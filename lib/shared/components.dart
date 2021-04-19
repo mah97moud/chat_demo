@@ -183,7 +183,7 @@ Widget buildRaisedButton({
   return Container(
     width: double.infinity,
     height: 40.0,
-    child: RaisedButton(
+    child: ElevatedButton(
       onPressed: onPressed,
       child: Text(
         text.toUpperCase(),

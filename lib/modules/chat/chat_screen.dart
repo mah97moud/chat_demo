@@ -190,14 +190,14 @@ class ChatScreen extends StatelessWidget {
                                   ),
                                   splashRadius: 20.0,
                                 ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.mic_none_outlined,
-                                    color: kGreyColor500(),
-                                  ),
-                                  splashRadius: 20.0,
-                                ),
+                                // IconButton(
+                                //   onPressed: () {},
+                                //   icon: Icon(
+                                //     Icons.mic_none_outlined,
+                                //     color: kGreyColor500(),
+                                //   ),
+                                //   splashRadius: 20.0,
+                                // ),
                               ],
                             ),
                           ),
