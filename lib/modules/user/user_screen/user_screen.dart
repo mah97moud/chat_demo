@@ -19,7 +19,7 @@ class _UserScreenState extends State<UserScreen> {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  File _image;
+  late File _image;
   String imagePath = '';
   String imageUr = '';
 
@@ -44,9 +44,7 @@ class _UserScreenState extends State<UserScreen> {
                     children: [
                       CircleAvatar(
                         radius: 50.0,
-                        backgroundImage: _image != null
-                            ? FileImage(_image)
-                            : AssetImage('assets/images/default.jpg'),
+                        backgroundImage: FileImage(_image),
                       ),
                       CircleAvatar(
                         backgroundColor: kGreyColor(),

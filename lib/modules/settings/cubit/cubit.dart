@@ -15,7 +15,7 @@ class SettingsCubit extends Cubit<SettingsStates> {
     emit(SettingsLoadingDataState());
     users.doc(getUserId()).snapshots().listen((event) {
       emit(SettingsSuccessDataState());
-      userData = event.data();
+      userData = event.data()!;
       saveFirstName(firstName: userData['firstName']);
       saveLastName(lastName: userData['lastName']);
     }).onError((handleError) {

@@ -17,8 +17,8 @@ class ImageCubit extends Cubit<ImageStates> {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  File image;
-  String imageName;
+  File image = File('');
+  String? imageName;
   String imageUr = '';
 
   Map<String, dynamic> data = {};
@@ -67,11 +67,12 @@ class ImageCubit extends Cubit<ImageStates> {
     }
   }
 
-  void sendMessage(
-      {@required String imageName,
-      @required date,
-      @required String friendId,
-      context}) {
+  void sendMessage({
+    required String imageName,
+    required date,
+    required String friendId,
+    context,
+  }) {
     emit(ImageSendStates());
     users
         .doc(getUserId())
@@ -106,11 +107,11 @@ class ImageCubit extends Cubit<ImageStates> {
     });
   }
 
-  getFriendData({@required String userId}) {
+  getFriendData({required String userId}) {
     emit(LoadingFriendState());
     users.doc(userId).snapshots().listen((event) {
       emit(SuccessFriendState());
-      data = event.data();
+      data = event.data()!;
     });
   }
 }

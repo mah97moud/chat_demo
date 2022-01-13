@@ -10,7 +10,7 @@ class ChatScreen extends StatelessWidget {
   final String userId;
   final messageController = TextEditingController();
 
-  ChatScreen({this.userId});
+  ChatScreen({required this.userId});
 
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(HomeLoadingState());
     users.doc(getUserId()).snapshots().listen((event) {
       emit(HomeSuccessDataState());
-      userData = event.data();
+      userData = event.data()!;
       saveUserImage(imagePath: userData['imagePath']);
       saveUserPhone(phone: userData['phone']);
       saveFirstName(firstName: userData['firstName']);

@@ -11,8 +11,8 @@ class LoginCubit extends Cubit<LoginStates> {
   static LoginCubit get(context) => BlocProvider.of(context);
 
   Future<void> phoneVerification({
-    @required String phone,
-    @required String code,
+    required String phone,
+    required String code,
     context,
   }) async {
     emit(LoginLoadingState());
@@ -23,14 +23,20 @@ class LoginCubit extends Cubit<LoginStates> {
         phoneNumber: '+$code$phone',
         verificationCompleted: (PhoneAuthCredential credential) {},
         verificationFailed: (FirebaseAuthException e) {},
-        codeSent: (String verificationId, int resendToken) {
+        // codeSent: (String verificationId, int resendToken) {
+        //   emit(LoginSuccessState());
+        //   navigateTo(
+        //     context: context,
+        //     widget: VerificationScreen(
+        //       code: verificationId,
+        //     ),
+        //   );
+        // },
+        codeSent: (verificationId, forceResendingToken) {
           emit(LoginSuccessState());
           navigateTo(
-            context: context,
-            widget: VerificationScreen(
-              code: verificationId,
-            ),
-          );
+              context: context,
+              widget: VerificationScreen(code: verificationId));
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
       );

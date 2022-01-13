@@ -15,11 +15,11 @@ class ProfileCubit extends Cubit<ProfileStates> {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  var userData = {};
-  List myChats = [];
+  dynamic userData = {};
+  List? myChats = [];
 
-  File image;
-  String imagePath;
+  File image = File('');
+  String? imagePath;
   String imageUr = '';
 
   final picker = ImagePicker();
@@ -34,7 +34,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
       imagePath = image.path.split('/').last;
       uploadFile();
     } else {
-      image = null;
+      // image = null;
       print('No image selected.');
     }
   }
@@ -42,7 +42,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future<void> uploadFile() async {
     try {
       emit(ProfileUpLoadState());
-      await storage.ref(getUserId()).putFile(image).then((value) {
+      await storage.ref(getUserId()).putFile(image!).then((value) {
         emit(ProfileUpLoadSuccessState());
         print(value.ref.fullPath);
         imageUrl();
@@ -70,10 +70,10 @@ class ProfileCubit extends Cubit<ProfileStates> {
     }
   }
 
-  Future<void> updateUser({String firstName, String lastName}) async {
+  Future<void> updateUser({String? firstName, String? lastName}) async {
     emit(ProfileSendState());
     //TODO : make firstName and lastName != null
-    if (firstName.length != 0 && lastName.length != 0) {
+    if (firstName!.length != 0 && lastName!.length != 0) {
       return users.doc(getUserId()).update({
         'firstName': firstName,
         'lastName': lastName,
@@ -85,7 +85,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
         print(getLastName());
       }).catchError((error) => print("Failed to update user: $error"));
     }
-    if (firstName.length != 0 && lastName.length == 0) {
+    if (firstName.length != 0 && lastName!.length == 0) {
       return users.doc(getUserId()).update({
         'firstName': firstName,
         'lastName': '',
@@ -97,7 +97,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
         print(getLastName());
       }).catchError((error) => print("Failed to update user: $error"));
     }
-    if (firstName.length == 0 && lastName.length != 0) {
+    if (firstName.length == 0 && lastName!.length != 0) {
       return users.doc(getUserId()).update({
         'firstName': '',
         'lastName': lastName,
@@ -109,7 +109,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
         print(getLastName());
       }).catchError((error) => print("Failed to update user: $error"));
     }
-    if (firstName.length == 0 && lastName.length == 0) {
+    if (firstName.length == 0 && lastName!.length == 0) {
       return users.doc(getUserId()).update({
         'firstName': getFirstName(),
         'lastName': getLastName(),

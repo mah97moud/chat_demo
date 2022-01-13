@@ -27,10 +27,10 @@ void main() async {
     myWidget = SelectLanguageScreen();
   }
 
-  String code = getLanguageCode();
+  // String code = getLanguageCode();
 
   String translation =
-      await rootBundle.loadString('assets/translations/${code ?? 'en'}.json');
+      await rootBundle.loadString('assets/translations/$code.json');
   print(translation);
 
   runApp(
@@ -46,25 +46,26 @@ class MyApp extends StatefulWidget {
   final Widget myWidget;
   final String translation;
 
-  const MyApp({@required this.myWidget, this.translation});
+  const MyApp({required this.myWidget, required this.translation});
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  AppLifecycleState _lastLifecycleState;
+  late AppLifecycleState _lastLifecycleState;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    _lastLifecycleState = AppLifecycleState.resumed;
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
   }
 
   @override
@@ -76,14 +77,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     });
   }
 
-  void updateUserData({String status}) {
+  void updateUserData({String? status}) {
     users.doc(getUserId()).update({
       'status': status,
     }).then((value) {});
   }
 
   getToke() async {
-    String token = await FirebaseMessaging().getToken();
+    String? token = await FirebaseMessaging.instance.getToken();
     print(token.toString());
   }
 
@@ -147,7 +148,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 textTheme: ButtonTextTheme.primary,
               ),
             ),
-            themeMode: getIsDark() ? ThemeMode.dark : ThemeMode.light,
+            themeMode: getIsDark() == true ? ThemeMode.dark : ThemeMode.light,
             home: Directionality(
               child: widget.myWidget,
               textDirection: changeDirection(context),

@@ -2,7 +2,7 @@ import 'package:chat_demo/modules/home/home_screen.dart';
 import 'package:chat_demo/modules/profile/cubit/cubit.dart';
 import 'package:chat_demo/modules/profile/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -78,7 +78,7 @@ class ProfileInfoScreen extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          '${getFirstName() ?? 'Username'} ${getLastName() ?? ''}',
+                          '${getFirstName()} ${getLastName()}',
                           style: textBlack18(),
                         ),
                         SizedBox(
@@ -88,7 +88,7 @@ class ProfileInfoScreen extends StatelessWidget {
                           showCursor: false,
                           controller: firstNameController,
                           decoration: InputDecoration(
-                            hintText: getLanguage(context).firstName,
+                            hintText: getLanguage(context)!.firstName,
                             hintStyle: textGrey16(),
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
@@ -113,7 +113,7 @@ class ProfileInfoScreen extends StatelessWidget {
                           showCursor: false,
                           controller: lastNameController,
                           decoration: InputDecoration(
-                            hintText: getLanguage(context).lastName,
+                            hintText: getLanguage(context)!.lastName,
                             hintStyle: textGrey16(),
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
@@ -159,7 +159,7 @@ class ProfileInfoScreen extends StatelessWidget {
                             firstNameController: firstNameController,
                             lastNameController: lastNameController);
                       },
-                      text: getLanguage(context).continu,
+                      text: getLanguage(context)!.continu,
                     ),
                   ),
                 ],

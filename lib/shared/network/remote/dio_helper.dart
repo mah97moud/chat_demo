@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class DioHelper {
-  static Dio dio;
+  static Dio? dio;
   DioHelper() {
     dio = Dio(
       BaseOptions(
@@ -17,11 +17,11 @@ class DioHelper {
     query,
   }) async {
     if (token != null) {
-      dio.options.headers = {
+      dio!.options.headers = {
         'Authorization': 'key= $token',
       };
     }
-    return await dio.post(
+    return await dio!.post(
       path,
       data: data ?? null,
       queryParameters: query ?? null,

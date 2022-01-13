@@ -17,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
           textDirection: changeDirection(context),
           child: Scaffold(
             appBar: AppBar(
-              title: Text(getLanguage(context).settings),
+              title: Text(getLanguage(context)!.settings),
             ),
             body: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -37,9 +37,7 @@ class SettingsScreen extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 30.0,
-                                backgroundImage: getUserImage() != null
-                                    ? NetworkImage(getUserImage())
-                                    : AssetImage('assets/images/default.jpg'),
+                                backgroundImage: NetworkImage(getUserImage()),
                               ),
                               SizedBox(
                                 width: 20.0,
@@ -48,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${getFirstName() ?? getLanguage(context).username} ${getLastName() ?? ''}',
+                                    '${getFirstName()} ${getLastName()}',
                                     style:
                                         Theme.of(context).textTheme.headline6,
                                   ),
@@ -78,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                               context: context,
                               builder: (context) {
                                 return buildAlertDialog(
-                                  title: getLanguage(context).changeLanguage,
+                                  title: getLanguage(context)!.changeLanguage,
                                   context: context,
                                   value: appCubit(context).isDark,
                                   onChange: (isDark) {
@@ -103,7 +101,7 @@ class SettingsScreen extends StatelessWidget {
                                               },
                                             );
                                           },
-                                          text: getLanguage(context).english,
+                                          text: getLanguage(context)!.english,
                                         ),
                                         SizedBox(
                                           height: 20.0,
@@ -120,7 +118,7 @@ class SettingsScreen extends StatelessWidget {
                                               },
                                             );
                                           },
-                                          text: getLanguage(context).arabic,
+                                          text: getLanguage(context)!.arabic,
                                         ),
                                       ],
                                     ),
@@ -136,13 +134,13 @@ class SettingsScreen extends StatelessWidget {
                           title: Column(
                             children: [
                               Text(
-                                getLanguage(context).changeLanguage,
+                                getLanguage(context)!.changeLanguage,
                               ),
                               SizedBox(
                                 height: 2.0,
                               ),
                               Text(
-                                getLanguage(context).selectCode,
+                                getLanguage(context)!.selectCode,
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ],
@@ -158,15 +156,15 @@ class SettingsScreen extends StatelessWidget {
                               context: context,
                               builder: (context) {
                                 return buildAlertDialog(
-                                  title: getLanguage(context).changeMode,
+                                  title: getLanguage(context)!.changeMode,
                                   context: context,
-                                  value: getIsDark(),
+                                  value: getIsDark() == true,
                                   onChange: (isDark) {
                                     appCubit(context).changeAppTheme(isDark);
                                   },
-                                  text: getIsDark()
-                                      ? getLanguage(context).dark
-                                      : getLanguage(context).light,
+                                  text: getIsDark() == true
+                                      ? getLanguage(context)!.dark
+                                      : getLanguage(context)!.light,
                                 );
                               },
                             );
@@ -177,12 +175,12 @@ class SettingsScreen extends StatelessWidget {
                           contentPadding: EdgeInsets.only(left: 0.0),
                           title: Column(
                             children: [
-                              Text(getLanguage(context).appearance),
+                              Text(getLanguage(context)!.appearance),
                               SizedBox(
                                 height: 2.0,
                               ),
                               Text(
-                                getLanguage(context).changeMode,
+                                getLanguage(context)!.changeMode,
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ],

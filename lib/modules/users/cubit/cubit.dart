@@ -9,7 +9,7 @@ class UsersCubit extends Cubit<UsersStates> {
   var users = FirebaseFirestore.instance.collection('users');
 
   var usersData = [];
-  List usersList;
+  List? usersList;
 
   getRealTimeData() {
     emit(UsersLoadingState());

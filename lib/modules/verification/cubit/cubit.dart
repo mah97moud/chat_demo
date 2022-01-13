@@ -18,19 +18,24 @@ class VerificationCubit extends Cubit<VerificationStates> {
     await SmsAutoFill().listenForCode;
   }
 
-  void codeVerification(
-      {@required String smsCode,
-      @required context,
-      @required String firebaseCode}) {
+  void codeVerification({
+    required String smsCode,
+    required context,
+    required String firebaseCode,
+  }) {
     emit(VerificationLoadingState());
     PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
         verificationId: firebaseCode, smsCode: smsCode);
 
     FirebaseAuth.instance.signInWithCredential(phoneAuthCredential).then(
       (value) {
-        saveUserPhone(phone: value.user.phoneNumber);
-        saveUserId(userId: value.user.uid);
-        FirebaseFirestore.instance.collection('users').doc(value.user.uid).set({
+        String? phoneNumber = value.user!.phoneNumber;
+        saveUserPhone(phone: phoneNumber);
+        saveUserId(userId: value.user!.uid);
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(value.user!.uid)
+            .set({
           'firstName': 'Username',
           'lastName': '',
           'userId': getUserId(),

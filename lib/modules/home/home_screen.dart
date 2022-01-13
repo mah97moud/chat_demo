@@ -5,7 +5,7 @@ import 'package:chat_demo/modules/users/users_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:chat_demo/shared/cubit/cubit.dart';
 import 'package:chat_demo/shared/cubit/states.dart';
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,16 +43,14 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 20.0,
-                          backgroundImage: getUserImage() != null
-                              ? NetworkImage(getUserImage())
-                              : AssetImage('assets/images/default.jpg'),
+                          backgroundImage: NetworkImage(getUserImage()),
                           // backgroundColor: kBlueColor(),
                         ),
                         SizedBox(
                           width: 20.0,
                         ),
                         Text(
-                          '${getFirstName() ?? 'Username'}  ${getLastName() ?? ''}',
+                          '${getFirstName()}  ${getLastName()}',
                           style: textWhite20(),
                         ),
                       ],
@@ -87,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             width: double.infinity,
                             child: Text(
-                              getLanguage(context).chats,
+                              getLanguage(context)!.chats,
                               style: Theme.of(context).textTheme.headline6,
                             ),
                           ),

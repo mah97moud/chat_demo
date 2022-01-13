@@ -2,7 +2,8 @@ import 'package:chat_demo/modules/chat/chat_screen.dart';
 import 'package:chat_demo/modules/users/cubit/cubit.dart';
 import 'package:chat_demo/modules/users/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +14,7 @@ class UsersScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         title: Text(
-          getLanguage(context).users,
+          getLanguage(context)!.users,
         ),
       ),
       body: BlocProvider(

@@ -21,15 +21,15 @@ class ChatCubit extends Cubit<ChatStates> {
     return formattedDate.toString();
   }
 
-  getFriendData({@required String userId}) {
+  getFriendData({required String userId}) {
     emit(ChatLoadingFriendState());
     users.doc(userId).snapshots().listen((event) {
       emit(ChatSuccessFriendState());
-      data = event.data();
+      data = event.data()!;
     });
   }
 
-  void createChat({@required String friendId}) {
+  void createChat({required String friendId}) {
     emit(ChatCreateState());
     users.doc(getUserId()).collection('chats').doc(friendId).set(data).then(
       (value) {
@@ -50,9 +50,9 @@ class ChatCubit extends Cubit<ChatStates> {
   }
 
   void sendMessage({
-    @required String message,
-    @required date,
-    @required String friendId,
+    required String message,
+    required date,
+    required String friendId,
   }) {
     emit(ChatSendingMessageState());
     users
@@ -87,7 +87,7 @@ class ChatCubit extends Cubit<ChatStates> {
     });
   }
 
-  void getMessages({@required String friendId}) {
+  void getMessages({required String friendId}) {
     emit(ChatGettingMessageState());
     users
         .doc(getUserId())
@@ -118,7 +118,7 @@ class ChatCubit extends Cubit<ChatStates> {
     }
   }
 
-  Future<void> updateUser({String typing}) {
+  Future<void> updateUser({required String typing}) {
     return users
         .doc(getUserId())
         .update({

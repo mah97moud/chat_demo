@@ -7,6 +7,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1020898838317:android:7f42d8fcf0bfc61dee75a4",
+        "android_client_info": {
+          "package_name": "com.example.notify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020898838317-2dn1bnscooclv5nmkt57vir2v17f1aqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.notify",
+            "certificate_hash": "16b2cd4798f912ec19535da65ee25538ecb3e049"
+          }
+        },
+        {
+          "client_id": "1020898838317-jrh3cfqjrcb6u8mkbigt5lgko2unfs6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGc8DHvi7nG86Hb-cAOPlb43WCWtuTGzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020898838317-jrh3cfqjrcb6u8mkbigt5lgko2unfs6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1020898838317:android:336dccb80e7a528cee75a4",
         "android_client_info": {
           "package_name": "com.mahmoud.chat_demo"
@@ -14,11 +51,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1020898838317-l48hs988r3tj3n3ok9i30b22e67n0o5l.apps.googleusercontent.com",
+          "client_id": "1020898838317-n858nm0dfko5d14l1g5uria3fv06nrn9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.mahmoud.chat_demo",
-            "certificate_hash": "d1731c8e667a0263275a4687bd813cd8cda1d382"
+            "certificate_hash": "16b2cd4798f912ec19535da65ee25538ecb3e049"
           }
         },
         {

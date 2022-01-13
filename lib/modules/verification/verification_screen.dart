@@ -9,7 +9,7 @@ import 'cubit/states.dart';
 class VerificationScreen extends StatelessWidget {
   final String code;
 
-  VerificationScreen({@required this.code});
+  VerificationScreen({required this.code});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class VerificationScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    getLanguage(context).enterCode,
+                    getLanguage(context)!.enterCode,
                     style: textBlackBold18(),
                   ),
                   SizedBox(
@@ -37,7 +37,7 @@ class VerificationScreen extends StatelessWidget {
                     height: 50.0,
                     child: PinFieldAutoFill(
                       onCodeChanged: (value) {
-                        VerificationCubit.get(context).smsCode = value;
+                        VerificationCubit.get(context).smsCode = value!;
                       },
                       decoration: UnderlineDecoration(
                         colorBuilder: PinListenColorBuilder(
@@ -58,7 +58,7 @@ class VerificationScreen extends StatelessWidget {
                         firebaseCode: this.code,
                       );
                     },
-                    text: getLanguage(context).verify,
+                    text: getLanguage(context)!.verify,
                   ),
                 ],
               ),

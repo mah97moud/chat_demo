@@ -1,7 +1,7 @@
 import 'package:chat_demo/modules/profile/cubit/cubit.dart';
 import 'package:chat_demo/modules/profile/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
           textDirection: changeDirection(context),
           child: Scaffold(
             appBar: AppBar(
-              title: Text(getLanguage(context).profile),
+              title: Text(getLanguage(context)!.profile),
             ),
             body: SingleChildScrollView(
               child: Column(
@@ -81,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          '${getFirstName() ?? getLanguage(context).username} ${getLastName() ?? ''}',
+                          '${getFirstName()} ${getLastName()}',
                           style: Theme.of(context).textTheme.headline6,
                         ),
                         SizedBox(
@@ -91,26 +91,29 @@ class ProfileScreen extends StatelessWidget {
                           showCursor: false,
                           controller: firstNameController,
                           decoration: InputDecoration(
-                            hintText: getLanguage(context).firstName,
+                            hintText: getLanguage(context)!.firstName,
                             hintStyle: Theme.of(context).textTheme.subtitle1,
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    getIsDark() ? kYellowColor() : kBlueColor(),
+                                color: getIsDark() == true
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    getIsDark() ? kYellowColor() : kBlueColor(),
+                                color: getIsDark() == true
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                                 width: 2.0,
                               ),
                             ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    getIsDark() ? kYellowColor() : kBlueColor(),
+                                color: getIsDark() == true
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                           ),
@@ -119,26 +122,29 @@ class ProfileScreen extends StatelessWidget {
                           showCursor: false,
                           controller: lastNameController,
                           decoration: InputDecoration(
-                            hintText: getLanguage(context).lastName,
+                            hintText: getLanguage(context)!.lastName,
                             hintStyle: Theme.of(context).textTheme.subtitle1,
                             contentPadding: EdgeInsets.only(left: 15.0),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    getIsDark() ? kYellowColor() : kBlueColor(),
+                                color: getIsDark() == true
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    getIsDark() ? kYellowColor() : kBlueColor(),
+                                color: getIsDark() == true
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                                 width: 2.0,
                               ),
                             ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    getIsDark() ? kYellowColor() : kBlueColor(),
+                                color: getIsDark() == true
+                                    ? kYellowColor()
+                                    : kBlueColor(),
                               ),
                             ),
                           ),
@@ -150,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                getLanguage(context).text,
+                                getLanguage(context)!.text,
                                 style: Theme.of(context).textTheme.subtitle1,
                                 textAlign: TextAlign.left,
                               ),
@@ -172,7 +178,7 @@ class ProfileScreen extends StatelessWidget {
                             firstNameController: firstNameController,
                             lastNameController: lastNameController);
                       },
-                      text: getLanguage(context).save,
+                      text: getLanguage(context)!.save,
                     ),
                   ),
                 ],

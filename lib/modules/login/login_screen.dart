@@ -1,7 +1,7 @@
 import 'package:chat_demo/modules/login/cubit/cubit.dart';
 import 'package:chat_demo/modules/login/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                           height: 40.0,
                         ),
                         Text(
-                          getLanguage(context).enterNumber,
+                          getLanguage(context)!.enterNumber,
                           textAlign: TextAlign.center,
                           style: textBlackBold20().copyWith(
                             fontSize: 22.0,
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                         Container(
                           width: 270.0,
                           child: Text(
-                            getLanguage(context).receiveNotificationCode,
+                            getLanguage(context)!.receiveNotificationCode,
                             style: textBlack14(),
                             textAlign: TextAlign.center,
                           ),
@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                                 controller: codeController,
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
-                                  labelText: getLanguage(context).code,
+                                  labelText: getLanguage(context)!.code,
                                   hintText: '+',
                                   hintStyle: textBlackBold20(),
                                   labelStyle: textBlackBold14().copyWith(
@@ -66,13 +66,13 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors.grey[300],
+                                      color: Colors.grey.shade300,
                                     ),
                                   ),
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       width: 1.0,
-                                      color: Colors.grey[300],
+                                      color: Colors.grey.shade300,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
@@ -97,19 +97,20 @@ class LoginScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 15.0),
-                                    labelText: getLanguage(context).phoneNumber,
+                                    labelText:
+                                        getLanguage(context)!.phoneNumber,
                                     labelStyle: textBlackBold14().copyWith(
                                       color: kBlueColor(),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Colors.grey[300],
+                                        color: Colors.grey.shade300,
                                       ),
                                     ),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         width: 1.0,
-                                        color: Colors.grey[300],
+                                        color: Colors.grey.shade300,
                                       ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
@@ -127,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                           height: 15.0,
                         ),
                         buildRaisedButton(
-                          text: getLanguage(context).next,
+                          text: getLanguage(context)!.next,
                           onPressed: () {
                             print(phoneController.text);
                             print(codeController.text);
@@ -149,7 +150,7 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginErrorState)
             showToastApp(
-              errorMsg: getLanguage(context).numberError,
+              errorMsg: getLanguage(context)!.numberError,
             );
         },
       ),

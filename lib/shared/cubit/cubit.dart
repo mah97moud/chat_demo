@@ -9,13 +9,13 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(InitState());
   static AppCubit get(context) => BlocProvider.of(context);
 
-  LanguageModel languageModel;
+  LanguageModel? languageModel;
   TextDirection textDirectionApp = TextDirection.ltr;
   bool isRtf = false;
   bool isDark = false;
 
   Future<void> changeLanguage({
-    @required String code,
+    required String code,
   }) async {
     String translation =
         await rootBundle.loadString('assets/translations/$code.json');
@@ -31,7 +31,7 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   void loadLanguage({
-    @required String languageJson,
+    required String languageJson,
   }) {
     languageModel = LanguageModel.fromJson(languageJson);
     print(languageJson);

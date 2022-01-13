@@ -157,15 +157,15 @@ TextStyle textWhiteBold20() => TextStyle(
 //Navigate Method
 
 void navigateTo(
-        {@required context, @required Widget widget, Function setState}) =>
+        {required context, required Widget widget, Function? setState}) =>
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => widget),
     );
 
 void navigateAndFinish({
-  @required context,
-  @required Widget widget,
+  required context,
+  required Widget widget,
 }) {
   Navigator.pushAndRemoveUntil(
       context,
@@ -176,9 +176,9 @@ void navigateAndFinish({
 //Widget Component
 
 Widget buildRaisedButton({
-  @required Function onPressed,
-  @required String text,
-  TextStyle style,
+  required GestureTapCallback onPressed,
+  required String text,
+  TextStyle? style,
 }) {
   return Container(
     width: double.infinity,
@@ -197,9 +197,9 @@ Widget buildRaisedButton({
 //Build user Item
 
 Widget buildItem({
-  @required Function onTap,
+  required GestureTapCallback onTap,
   item,
-  TextStyle style,
+  TextStyle? style,
 }) {
   return InkWell(
     onTap: onTap,
@@ -486,17 +486,13 @@ Widget userItemMessage(
 //End of Item
 
 //Profile Avatar
-Stack buildProfileAvatar({@required profileData, double radius = 18.0}) {
+Stack buildProfileAvatar({required profileData, double radius = 18.0}) {
   return Stack(
     alignment: Alignment.bottomRight,
     children: [
       CircleAvatar(
         radius: radius,
-        backgroundImage: profileData['imagePath'] == null
-            ? AssetImage('assets/images/default.jpg')
-            : NetworkImage(
-                profileData['imagePath'],
-              ),
+        backgroundImage: AssetImage('assets/images/default.jpg'),
       ),
       if (profileData['status'] == 'online' ||
           profileData['status'] == 'Typing')
@@ -517,7 +513,7 @@ Stack buildProfileAvatar({@required profileData, double radius = 18.0}) {
 
 //SharedPreferences
 
-SharedPreferences preferences;
+SharedPreferences? preferences;
 
 Future<void> initPref() async => await SharedPreferences.getInstance().then(
       (value) {
@@ -525,46 +521,48 @@ Future<void> initPref() async => await SharedPreferences.getInstance().then(
       },
     );
 
-Future<bool> saveFirstName({@required String firstName}) =>
-    preferences.setString('firstName', firstName);
-Future<bool> saveLastName({@required String lastName}) =>
-    preferences.setString('LastName', lastName);
+Future<bool> saveFirstName({required String firstName}) =>
+    preferences!.setString('firstName', firstName);
+Future<bool> saveLastName({required String lastName}) =>
+    preferences!.setString('LastName', lastName);
 
-Future<bool> saveUserId({@required String userId}) =>
-    preferences.setString('userId', userId);
+Future<bool> saveUserId({required String userId}) =>
+    preferences!.setString('userId', userId);
 
-Future<bool> saveUserImage({@required String imagePath}) =>
-    preferences.setString('imagePath', imagePath);
+Future<bool> saveUserImage({required String imagePath}) =>
+    preferences!.setString('imagePath', imagePath);
 
-Future<bool> saveUserPhone({@required String phone}) =>
-    preferences.setString('phone', phone);
-Future<bool> saveLanguageCode({@required String code}) =>
-    preferences.setString('code', code);
-Future<bool> saveDirection({@required bool isRtf}) =>
-    preferences.setBool('isRtf', isRtf);
-Future<bool> saveIsDark({@required bool isDark}) =>
-    preferences.setBool('isDark', isDark);
+Future<bool> saveUserPhone({required String? phone}) =>
+    preferences!.setString('phone', phone!);
+Future<bool> saveLanguageCode({required String code}) =>
+    preferences!.setString('code', code);
+Future<bool> saveDirection({required bool isRtf}) =>
+    preferences!.setBool('isRtf', isRtf);
+Future<bool> saveIsDark({required bool isDark}) =>
+    preferences!.setBool('isDark', isDark);
 
-String getFirstName() => preferences.get('firstName');
-String getLastName() => preferences.get('LastName');
-String getUserId() => preferences.get('userId');
-String getUserImage() => preferences.get('imagePath');
-String getUserPhone() => preferences.get('phone');
-String getLanguageCode() => preferences.get('code');
-bool getDirection() => preferences.getBool('isRtf');
-bool getIsDark() => preferences.getBool('isDark');
+String getFirstName() => preferences!.get('firstName').toString();
+String getLastName() => preferences!.get('LastName').toString();
+String getUserId() => preferences!.get('userId').toString();
+String getUserImage() => preferences!.get('imagePath').toString();
+String getUserPhone() => preferences!.get('phone').toString();
+String getLanguageCode() => preferences!.get('code').toString();
+bool? getDirection() => preferences!.getBool('isRtf');
+bool? getIsDark() => preferences!.getBool('isDark');
 
 // End of SharedPreferences
 
-LanguageModel getLanguage(context) => AppCubit.get(context).languageModel;
+LanguageModel? getLanguage(context) => AppCubit.get(context).languageModel;
 TextDirection changeDirection(context) =>
-    getDirection() ?? false ? TextDirection.rtl : TextDirection.ltr;
+    getDirection() == true ? TextDirection.rtl : TextDirection.ltr;
 appCubit(context) => AppCubit.get(context);
+
+String code = 'en';
 
 //Toast
 
 void showToastApp({
-  @required String errorMsg,
+  required String errorMsg,
 }) =>
     Fluttertoast.showToast(
       msg: errorMsg,
@@ -579,12 +577,12 @@ void showToastApp({
 // Start Dialog
 
 AlertDialog buildAlertDialog({
-  BuildContext context,
-  String text,
-  @required String title,
-  @required bool value,
-  @required Function onChange,
-  Widget child,
+  required BuildContext context,
+  String? text,
+  required String title,
+  required bool value,
+  required Function(bool value) onChange,
+  Widget? child,
 }) {
   return AlertDialog(
     title: Text(title),
@@ -592,7 +590,7 @@ AlertDialog buildAlertDialog({
         Row(
           children: [
             Text(
-              text,
+              text!,
               style: Theme.of(context).textTheme.headline6,
             ),
             Spacer(),

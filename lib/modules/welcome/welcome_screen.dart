@@ -22,28 +22,28 @@ class WelcomeScreen extends StatelessWidget {
               height: 20.0,
             ),
             Text(
-              getLanguage(context).takePrivacy,
+              getLanguage(context)!.takePrivacy,
               style: textBlackBold20(),
             ),
             SizedBox(
               height: 5.0,
             ),
             Text(
-              getLanguage(context).beYourself,
+              getLanguage(context)!.beYourself,
               style: textBlackBold20(),
             ),
             SizedBox(
               height: 5.0,
             ),
             Text(
-              getLanguage(context).message,
+              getLanguage(context)!.message,
               style: textBlackBold20(),
             ),
             SizedBox(
               height: 40.0,
             ),
             buildRaisedButton(
-              text: getLanguage(context).continu,
+              text: getLanguage(context)!.continu,
               onPressed: () {
                 navigateTo(
                   context: context,
@@ -57,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {},
               child: Text(
-                getLanguage(context).termsPrivacy,
+                getLanguage(context)!.termsPrivacy,
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontWeight: FontWeight.bold,
