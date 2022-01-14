@@ -2,7 +2,6 @@ import 'package:chat_demo/modules/login/cubit/states.dart';
 import 'package:chat_demo/modules/verification/verification_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginStates> {

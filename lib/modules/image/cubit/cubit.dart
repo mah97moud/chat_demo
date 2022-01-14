@@ -17,7 +17,7 @@ class ImageCubit extends Cubit<ImageStates> {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  File image = File('');
+  dynamic image;
   String? imageName;
   String imageUr = '';
 
@@ -27,15 +27,27 @@ class ImageCubit extends Cubit<ImageStates> {
 
   Future getImage() async {
     emit(ImagePickStates());
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       emit(ImagePickEndStates());
       image = File(pickedFile.path);
       imageName = image.path.split('/').last;
       uploadFile();
+    } else {
+      image = null;
     }
   }
+
+  // Future<File> getImageFileFromAssets(String path) async {
+  //   final byteData = await rootBundle.load('assets/$path');
+
+  //   final file = File('${(await getTemporaryDirectory()).path}/$path');
+  //   await file.writeAsBytes(byteData.buffer
+  //       .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+  //   return file;
+  // }
 
   Future<void> uploadFile() async {
     emit(ImageUploadStates());

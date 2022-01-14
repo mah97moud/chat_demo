@@ -1,9 +1,12 @@
+
 import 'dart:io';
+
 
 import 'package:chat_demo/modules/profile/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -26,7 +29,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   Future getImage() async {
     emit(ProfilePickImageState());
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       emit(ProfilePickImageSuccessState());
@@ -42,7 +45,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future<void> uploadFile() async {
     try {
       emit(ProfileUpLoadState());
-      await storage.ref(getUserId()).putFile(image!).then((value) {
+      await storage.ref(getUserId()).putFile(image).then((value) {
         emit(ProfileUpLoadSuccessState());
         print(value.ref.fullPath);
         imageUrl();
@@ -83,7 +86,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
         getRealTimeData();
         print(getFirstName());
         print(getLastName());
-      }).catchError((error) => print("Failed to update user: $error"));
+      }).catchError((error) {
+        print("Failed to update user: $error");
+      });
     }
     if (firstName.length != 0 && lastName!.length == 0) {
       return users.doc(getUserId()).update({
@@ -95,7 +100,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
         getRealTimeData();
         print(getFirstName());
         print(getLastName());
-      }).catchError((error) => print("Failed to update user: $error"));
+      }).catchError((error) {
+        print("Failed to update user: $error");
+      });
     }
     if (firstName.length == 0 && lastName!.length != 0) {
       return users.doc(getUserId()).update({
@@ -107,7 +114,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
         getRealTimeData();
         print(getFirstName());
         print(getLastName());
-      }).catchError((error) => print("Failed to update user: $error"));
+      }).catchError((error) {
+        print("Failed to update user: $error");
+      });
     }
     if (firstName.length == 0 && lastName!.length == 0) {
       return users.doc(getUserId()).update({
@@ -119,7 +128,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
         getRealTimeData();
         print(getFirstName());
         print(getLastName());
-      }).catchError((error) => print("Failed to update user: $error"));
+      }).catchError((error) {
+        print("Failed to update user: $error");
+      });
     }
   }
 
@@ -130,7 +141,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
     }).then((value) {
       emit(ProfileSendImageSuccessState());
       getRealTimeData();
-    }).catchError((error) => print("Failed to update user: $error"));
+    }).catchError((error) {
+      print("Failed to update user: $error");
+    });
   }
 
   void clearTextField({firstNameController, lastNameController}) {

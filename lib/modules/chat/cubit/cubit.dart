@@ -125,6 +125,8 @@ class ChatCubit extends Cubit<ChatStates> {
           'status': typing,
         })
         .then((value) {})
-        .catchError((error) => print("Failed to update user: $error"));
+        .catchError((error) {
+          print("Failed to update user: $error");
+        });
   }
 }

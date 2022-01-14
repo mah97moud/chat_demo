@@ -146,7 +146,7 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
@@ -196,7 +196,9 @@ class _UserScreenState extends State<UserScreen> {
           'lastName': lastNameController.text,
         })
         .then((value) {})
-        .catchError((error) => print("Failed to update user: $error"));
+        .catchError((error) {
+          print("Failed to update user: $error");
+        });
   }
 
   void clearTextField() {

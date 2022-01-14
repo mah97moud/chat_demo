@@ -3,7 +3,6 @@ import 'package:chat_demo/modules/chat/cubit/states.dart';
 import 'package:chat_demo/modules/image/image_screen.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatScreen extends StatelessWidget {

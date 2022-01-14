@@ -3,13 +3,12 @@ import 'package:chat_demo/modules/image/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ImageScreen extends StatelessWidget {
   final userId;
 
-  const ImageScreen({@required this.userId});
+  const ImageScreen({required this.userId});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +34,20 @@ class ImageScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: 400.0,
-                            width: double.infinity,
-                            child: ImageCubit.get(context).image != null
-                                ? Image(
+                          ImageCubit.get(context).image != null
+                              ? Container(
+                                  height: 400.0,
+                                  width: double.infinity,
+                                  child: Image(
                                     image: FileImage(
                                         ImageCubit.get(context).image),
                                     fit: BoxFit.contain,
-                                  )
-                                : null,
-                          ),
+                                  ),
+                                )
+                              : SizedBox(
+                                  height: 400.0,
+                                  width: double.infinity,
+                                ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [

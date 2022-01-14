@@ -3,7 +3,6 @@ import 'package:chat_demo/modules/verification/cubit/states.dart';
 import 'package:chat_demo/shared/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
@@ -15,7 +14,7 @@ class VerificationCubit extends Cubit<VerificationStates> {
   String smsCode = '';
 
   Future<void> listenSms() async {
-    await SmsAutoFill().listenForCode;
+    Future.value(SmsAutoFill().listenForCode);
   }
 
   void codeVerification({
